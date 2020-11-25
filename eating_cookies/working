@@ -1,0 +1,25 @@
+functionCount = 0
+def getCombinations(n, arr, index):
+    global functionCount
+    functionCount += 1
+    if arr[index] + 1 > 3:
+        arr[index] = 0
+        return
+    arr[index] += 1
+
+    sum = arr[0] + arr[1] + arr[2] + arr[3] + arr[4]
+    if sum == 5:
+        print(arr)
+        return
+    if sum > 5:
+        arr[index] = 0
+        return
+    if sum < 5:
+        getCombinations(n, arr, index + 1)
+        arr[index + 1] += 1
+        getCombinations(n, arr, index + 1)
+        if arr[index + 1] != 0:
+            arr[index + 1] -= 1
+        getCombinations(n, arr, index)
+
+        

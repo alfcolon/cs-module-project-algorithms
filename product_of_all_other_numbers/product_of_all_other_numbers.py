@@ -2,10 +2,34 @@
 Input: a List of integers
 Returns: a List of integers
 '''
-def product_of_all_other_numbers(arr):
-    # Your code here
 
-    pass
+def product_of_all_other_numbers(arr):
+    arr_len = len(arr)
+    left_product = [1] * arr_len
+    right_product = [1] * arr_len
+    product = [1] * arr_len
+    
+    if arr_len == 0:
+        return None
+    if arr_len == 1:
+        return arr
+    # Store left products so that the last element will be the product of all elements to the right of it
+    i = 1
+    while i < arr_len:
+        left_product[i] = arr[i - 1] * left_product[i - 1]
+        i += 1
+    # Store left products so that the last element will be the product of all elements to the right of it
+    i = arr_len - 2
+    while i >= 0:
+        right_product[i] = arr[i + 1] * right_product[i + 1]
+        i -= 1
+    # Build the product array
+    i = 0
+    while i < arr_len:
+        product[i] = left_product[i] * right_product[i]
+        i += 1
+
+    return product
 
 
 if __name__ == '__main__':
